@@ -2,6 +2,17 @@ import { useState } from "react";
 
 const Scoreboard = ({ title, teamName }) => {
   const [score, setScore] = useState(0);
+
+  // Create an array of button elements
+  const buttons = Array.from([1, 2, 3], (x) => (
+    <button
+      className="score-btn"
+      onClick={() => setScore((score) => (score += x))}
+    >
+      +{x}
+    </button>
+  ));
+
   return (
     <div className="scoreboard">
       <span className="title">{title}</span>
@@ -12,26 +23,7 @@ const Scoreboard = ({ title, teamName }) => {
         <span className="score">{score}</span>
       </div>
 
-      <div className="btn-container">
-        <button
-          className="score-btn"
-          onClick={() => setScore((score) => (score += 1))}
-        >
-          +1
-        </button>
-        <button
-          className="score-btn"
-          onClick={() => setScore((score) => (score += 2))}
-        >
-          +2
-        </button>
-        <button
-          className="score-btn"
-          onClick={() => setScore((score) => (score += 3))}
-        >
-          +3
-        </button>
-      </div>
+      <div className="btn-container">{buttons}</div>
     </div>
   );
 };
